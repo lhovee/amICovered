@@ -3,7 +3,7 @@
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 4vmin;
   pointer-events: none;
 }
 
@@ -15,7 +15,7 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,4 +35,35 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.app-content {
+  padding: 30px;
+}
+
+.user-search-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.search-button-container {
+  display: flex;
+}
+
+.label-input {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  margin-right: 3rem;
+}
+
+.user-contribute-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.map-marker-icon {
+  height: 40px;
 }
