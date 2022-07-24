@@ -65,7 +65,7 @@ export default function SimpleMap(props){
     <div style={{ height: '50vh', width: '100%' }}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE }}
-        defaultCenter={props.userLocation}
+        defaultCenter={props.userLocation || { lat: 39.099724, lng: -94.578331 }}
         defaultZoom={11}
       >
         {markers.map((m, index) => {
