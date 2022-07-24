@@ -1,8 +1,8 @@
-import logo from './logo.svg';
+import { ReactComponent as Logo } from "./assets/logo.svg"
 import './App.css';
 import GoogleMapComponent from './GoogleMapComponent.js';
 import { useEffect, useState } from "react";
-import DataTable from './assets/DataTable';
+import DataTable from './DataTable';
 
 import healthCareProvider from './assets/healthCareProvider.json';
 
@@ -12,6 +12,7 @@ function App() {
     lat: 39.099724,
     lng: -94.578331
   });
+  const [modal, showModal] = useState(false);
 
   // this is so that the map doesn't re-center until the user clicks
   // the search button
@@ -48,16 +49,16 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        {<Logo />}
       </header>
       <div className='app-content'>
         <div className='user-search-container'>
           <div className="label-input">
-            <p>Your zip</p>
+            <label>Zip</label>
             <input onChange={handleChange} />
           </div>
           <div className="label-input">
-            <p>Your health insurance provider</p>
+            <label>Insurance Provider</label>
             <select>
               {
                 insuranceProviders.map((insP, index) => {
@@ -67,7 +68,7 @@ function App() {
             </select>
           </div>
           <div className="label-input">
-            <p>Care type your looking for</p>
+            <label>Care Type</label>
             <select>
               {
                 careTypes.map((careType, index) => {
@@ -82,11 +83,11 @@ function App() {
         </div>
         <div className='user-contribute-container'>
           <p>
-            If you're visiting a healthcare provider, it's helpful to other users of "Am I Covered"
+            If you're visiting a healthcare provider, it's helpful to other users of <span className="blue-italics">"Am I Covered" </span>
             to know what insurance the healthcare provider accepts. Click "Contribute" below if you're
             feeling generous.
           </p>
-          <button>Contribute</button>
+          <button id="contributeBtn">Contribute</button>
         </div>
 
         <GoogleMapComponent center={userLocation} />

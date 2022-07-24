@@ -2,18 +2,22 @@ import React from "react";
 import GoogleMapReact from 'google-map-react';
 import { useEffect, useState } from "react";
 
-const AnyReactComponent = ({ text }) => <div className="map-marker-icon">
+const GoogleMapComponent = ({ text }) => <div className="map-marker-icon">
   <p style={{
-    color: 'white', 
-    background: 'grey',
-    padding: '8px 10px',
+    color: 'white',
+    background: 'purple',
+    shadow: '4px 8px #000000',
+    padding: '7px 9px',
     fontSize: '5px',
     display: 'inline-flex',
     textAlign: 'center',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: '100%',
-    transform: 'translate(-50%, -50%)'}}>{text}</p>
+    transform: 'translate(-50%, -50%)',
+    }}>
+        {text}
+    </p>,
   </div>;
 
 export default function SimpleMap(props){
@@ -69,7 +73,7 @@ export default function SimpleMap(props){
         defaultZoom={11}
       >
         {markers.map((m, index) => {
-          return <AnyReactComponent
+          return <GoogleMapComponent
           lat={m.lat}
           lng={m.lng}
           key={index}
