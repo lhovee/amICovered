@@ -1,8 +1,39 @@
 import logo from './logo.svg';
 import './App.css';
 import GoogleMapComponent from './GoogleMapComponent.js';
+import { useEffect, useState } from "react";
 
 function App() {
+  const geocoder = new window.google.maps.Geocoder();
+  const [userLocation, setUserLocation] = useState({
+    lat: 39.099724,
+    lng: -94.578331
+  });
+
+  // this is so that the map doesn't re-center until the user clicks
+  // the search button
+  const [userLocationRaw, setUserLocationRaw] = useState({
+    lat: 39.099724,
+    lng: -94.578331
+  });
+
+  function handleChange(e) {
+    const { value } = e.target;
+    if (!value || value.length !== 5) return;
+    geocoder.geocode( { 'address': value }, function(results, status) {
+      if (status === 'OK') {
+        // lat, long
+        const latLong = {
+          lat: results[0].geometry.bounds?.vb?.lo,
+          lng: results[0].geometry.bounds?.Ra?.lo,
+        }
+        setUserLocationRaw(latLong);
+      } else {
+        console.log('Geocode on user location was not successful for the following reason: ' + status);
+      }
+    });
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -12,7 +43,7 @@ function App() {
         <div className='user-search-container'>
           <div className="label-input">
             <p>Your zip</p>
-            <input />
+            <input value={userLocationRaw} onChange={handleChange} />
           </div>
           <div className="label-input">
             <p>Your health insurance provider</p>
@@ -43,7 +74,7 @@ function App() {
           <button>Contribute</button>
         </div>
 
-        <GoogleMapComponent />
+        <GoogleMapComponent center={userLocation} />
       </div>
     </div>
   );
