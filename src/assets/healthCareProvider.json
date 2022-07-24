@@ -15,7 +15,8 @@
             "United Healthcare",
             "Missouri HealthNet",
             "CIGNA"
-        ]
+        ],
+        "count": 1
     },
     {
         "providerName": "Cockerell And Mcintosh Pediatrics",
@@ -33,7 +34,8 @@
             "United Healthcare",
             "Missouri HealthNet",
             "CIGNA"
-        ]
+        ],
+        "count": 1
     },
     {
         "providerName": "Children's Mercy Adele Hall - Dental Clinic",
@@ -48,7 +50,8 @@
         "insuranceProviders": [
             "Blue Cross Blue Shield",
             "CIGNA"
-        ]
+        ],
+        "count": 1
     },
     {
         "providerName": "Children's Mercy College Boulevard",
@@ -63,10 +66,12 @@
         "insuranceProviders": [
             "Blue Cross Blue Shield",
             "CIGNA"
-        ]
+        ],
+        "count": 1
     },
     {
         "providerName": "Children's Mercy Adele Hall - Heart Center",
+        "phoneNumber": "(913) 696-8000",
         "street": "2401 Gillham Rd",
         "state": "MO",
         "city": "Kansas City",
@@ -77,10 +82,12 @@
         "insuranceProviders": [
             "Blue Cross Blue Shield",
             "CIGNA"
-        ]
+        ],
+        "count": 1
     },
     {
         "providerName": "Midtown Family Madicine",
+        "phoneNumber": "(913) 696-8000",
         "street": "3406 Broadway, Suite B",
         "state": "MO",
         "city": "Kansas City",
@@ -94,6 +101,7 @@
             "Coventry",
             "Humana",
             "Macicare"
-        ]
+        ],
+        "count": 1
     }
 ]

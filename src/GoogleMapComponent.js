@@ -1,5 +1,5 @@
 import React from "react";
-import GoogleMapReact from 'google-map-react';
+import GoogleMapReact, { fitBounds } from 'google-map-react';
 import { useEffect, useState } from "react";
 
 const GoogleMapComponent = ({ text }) => <div className="map-marker-icon">
@@ -21,21 +21,6 @@ const GoogleMapComponent = ({ text }) => <div className="map-marker-icon">
   </div>;
 
 export default function SimpleMap(props){
-  const places = [
-    {
-    street: '1100 Main St',
-    city: "Kansas City",
-    state: "MO",
-    zip: "64105",
-  },
-  {
-    street: '107 W 9th St',
-    city: "Kansas City",
-    state: "MO",
-    zip: "64105",
-  }
-];
-
   const geocoder = new window.google.maps.Geocoder();
   const [markers, setMarkers] = useState([{
     lat: 39.099724, lng: -94.578331,
@@ -43,7 +28,7 @@ export default function SimpleMap(props){
   }]);
 
   useEffect(() => {
-    places.forEach((p) => {
+    props.careProviders.forEach((p) => {
       const address = `${p.street}, ${p.city}, ${p.state} ${p.zip}`;
       const present = markers.some((m) => m.address === address);
       if (!present) {
@@ -57,7 +42,7 @@ export default function SimpleMap(props){
             }
             setMarkers([...markers, latLong]);
           } else {
-            console.log('Geocode was not successful for the following reason: ' + status);
+            console.log('Geocode on provider address was not successful for the following reason: ' + status);
           }
         });
       }
@@ -69,7 +54,7 @@ export default function SimpleMap(props){
     <div style={{ height: '50vh', width: '100%' }}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE }}
-        defaultCenter={props.userLocation || { lat: 39.099724, lng: -94.578331 }}
+        center={props.userLocation || { lat: 39.099724, lng: -94.578331 }}
         defaultZoom={11}
       >
         {markers.map((m, index) => {
