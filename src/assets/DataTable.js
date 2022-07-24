@@ -1,4 +1,5 @@
 import { AiFillPhone } from "react-icons/ai";
+import { Fragment } from "react";
 
 const careProviders = [
 	{
@@ -63,50 +64,44 @@ const careProviders = [
 ];
 
 function DataTable() {
-return careProviders.map((careProvider) =>
-<table className="data-table">
-    <tr>
-        <thead>
-        <th>Name</th>
-        </thead>
-
-        <td>{careProvider.providerName}</td>
-    </tr>
-    <tr>
-        <thead>
-        <th>Practice Type</th>
-        </thead>
-
-        <td>{careProvider.careType}</td>
-    </tr>
-    <tr>
-        <thead>
-        <th>Providers</th>
-        </thead>
-
-        <td>
-            {careProvider.insuranceProviders?.map((providerName) => {
-                return providerName;
-            })}
-        </td>
-    </tr>
-    <tr>
-        <thead>
-        <th>Address</th>
-        </thead>
-
-        <td>{`${careProvider.street} + ${careProvider.state} + ${careProvider.city} + ${careProvider.zip}`}</td>
-    </tr>
-    <tr>
-        <thead>
-        <th>Contact</th>
-        </thead>
-
-        {/*TODO: not sure if this click will work on an html element? */}
-        <td>{careProvider.phoneNumber && <span onClick={careProvider.number}><AiFillPhone /></span>}</td>
-    </tr>
-    </table>
-    )
-}
+return (
+	<table className="data-table">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Practice Type</th>
+				<th>Providers</th>
+				<th>Address</th>
+				<th>Contact</th>
+			</tr>		
+		</thead>
+		<tbody>
+			{careProviders.map((careProvider, index) => {
+    		return <Fragment key={index}>
+					<tr>
+        		<td>{careProvider.providerName}</td>
+					</tr>
+					<tr>
+        		<td>{careProvider.careType}</td>
+    			</tr>
+    			<tr>
+						<td>
+								{careProvider.insuranceProviders?.map((providerName) => {
+										return providerName;
+								})}
+						</td>
+    			</tr>
+    			<tr>
+		        <td>{`${careProvider.street} + ${careProvider.state} + ${careProvider.city} + ${careProvider.zip}`}</td>
+    			</tr>
+    			<tr>
+        		{/*TODO: not sure if this click will work on an html element? */}
+        		<td>{careProvider.phoneNumber && <span onClick={careProvider.number}><AiFillPhone /></span>}</td>
+    			</tr>
+				</Fragment>
+			})}
+		</tbody>
+	</table>
+)}
 
 export default DataTable;

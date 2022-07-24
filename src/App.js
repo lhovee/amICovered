@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import GoogleMapComponent from './GoogleMapComponent.js';
 import { useEffect, useState } from "react";
+import DataTable from './assets/DataTable';
 
 function App() {
   const geocoder = new window.google.maps.Geocoder();
@@ -75,6 +76,7 @@ function App() {
         </div>
 
         <GoogleMapComponent center={userLocation} />
+        <DataTable />
       </div>
     </div>
   );
