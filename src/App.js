@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import GoogleMapComponent from './GoogleMapComponent.js';
+import DataTable from './assets/DataTable';
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
         </div>
 
         <GoogleMapComponent />
+        <DataTable />
       </div>
     </div>
   );
