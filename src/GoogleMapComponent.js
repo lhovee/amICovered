@@ -40,30 +40,38 @@ export default function SimpleMap(){
 ];
 
   const geocoder = new window.google.maps.Geocoder();
-  const [markers, setMarkers] = useState([{lat: 39.099724, lng: -94.578331}]);
-  // places.forEach((p) => {
-  //   const address = `${p.street}, ${p.city}, ${p.state} ${p.zip}`;
-  //   geocoder.geocode( { 'address': address}, function(results, status) {
-  //     if (status === 'OK') {
-  //       // lat, long
-  //       const latLong = {
-  //         lat: results[0].geometry.bounds?.vb?.lo,
-  //         lng: results[0].geometry.bounds?.Ra?.lo
-  //       }
-  //       console.log(address, latLong);
-  //       setMarkers([markers, latLong]);
-  //     } else {
-  //       alert('Geocode was not successful for the following reason: ' + status);
-  //     }
-  //   });
-  // });
-  console.log(markers);
+  const [markers, setMarkers] = useState([{
+    lat: 39.099724, lng: -94.578331,
+    address: "default"
+  }]);
+
+  useEffect(() => {
+    places.forEach((p) => {
+      const address = `${p.street}, ${p.city}, ${p.state} ${p.zip}`;
+      const present = markers.some((m) => m.address === address);
+      if (!present) {
+        geocoder.geocode( { 'address': address}, function(results, status) {
+          if (status === 'OK') {
+            // lat, long
+            const latLong = {
+              lat: results[0].geometry.bounds?.vb?.lo,
+              lng: results[0].geometry.bounds?.Ra?.lo,
+              address: address
+            }
+            setMarkers([...markers, latLong]);
+          } else {
+            console.log('Geocode was not successful for the following reason: ' + status);
+          }
+        });
+      }
+    });
+  }, [markers])
 
   return (
     // Important! Always set the container height explicitly
     <div style={{ height: '50vh', width: '100%' }}>
       <GoogleMapReact
-        bootstrapURLKeys={{ key: "" }}
+        bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE }}
         defaultCenter={defaultProps.center}
         defaultZoom={defaultProps.zoom}
       >
