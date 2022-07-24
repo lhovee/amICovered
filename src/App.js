@@ -4,6 +4,8 @@ import GoogleMapComponent from './GoogleMapComponent.js';
 import { useEffect, useState } from "react";
 import DataTable from './assets/DataTable';
 
+import healthCareProvider from './assets/healthCareProvider.json';
+
 function App() {
   const geocoder = new window.google.maps.Geocoder();
   const [userLocation, setUserLocation] = useState({
@@ -29,11 +31,19 @@ function App() {
           lng: results[0].geometry.bounds?.Ra?.lo,
         }
         setUserLocationRaw(latLong);
+        console.log(latLong);
       } else {
         console.log('Geocode on user location was not successful for the following reason: ' + status);
       }
     });
   }
+
+  function handleSearch() {
+    //
+  }
+
+  const careTypes = healthCareProvider.map((p) => p.careTypes).flat();
+  const insuranceProviders = healthCareProvider.map((p) => p.insuranceProviders).flat();
 
   return (
     <div className="App">
@@ -44,26 +54,30 @@ function App() {
         <div className='user-search-container'>
           <div className="label-input">
             <p>Your zip</p>
-            <input value={userLocationRaw} onChange={handleChange} />
+            <input onChange={handleChange} />
           </div>
           <div className="label-input">
             <p>Your health insurance provider</p>
             <select>
-              <option>blah</option>
-              <option>blah two</option>
-              <option>blah three</option>
+              {
+                insuranceProviders.map((insP, index) => {
+                  return <option key={index}>{insP}</option>
+                })
+              }
             </select>
           </div>
           <div className="label-input">
             <p>Care type your looking for</p>
             <select>
-              <option>Pediatrician</option>
-              <option>Family Doctor</option>
-              <option>Pshychiatrist</option>
+              {
+                careTypes.map((careType, index) => {
+                  return <option key={index}>{careType}</option>
+                })
+              }
             </select>
           </div>
           <div className='search-button-container'>
-            <button>Search</button>
+            <button onClick={handleSearch}>Search</button>
           </div>
         </div>
         <div className='user-contribute-container'>
