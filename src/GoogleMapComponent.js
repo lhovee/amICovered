@@ -16,14 +16,7 @@ const AnyReactComponent = ({ text }) => <div className="map-marker-icon">
     transform: 'translate(-50%, -50%)'}}>{text}</p>
   </div>;
 
-export default function SimpleMap({props}){
-  const defaultProps = {
-    center: {
-      lat: 39.099724,
-      lng: -94.578331
-    },
-    zoom: 11
-  };
+export default function SimpleMap(props){
   const places = [
     {
     street: '1100 Main St',
@@ -72,8 +65,8 @@ export default function SimpleMap({props}){
     <div style={{ height: '50vh', width: '100%' }}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE }}
-        defaultCenter={props.center}
-        defaultZoom="11"
+        defaultCenter={props.userLocation}
+        defaultZoom={11}
       >
         {markers.map((m, index) => {
           return <AnyReactComponent
