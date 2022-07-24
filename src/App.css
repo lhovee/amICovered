@@ -1,0 +1,157 @@
+.App {
+  text-align: center;
+  color: #777777;
+  font-size: 17px;
+
+}
+
+.App-logo {
+    height: 4vmin;
+    pointer-events: none;
+  }
+
+input, select  {
+    color: #777777;
+    height: 2.5rem;
+    width: 15.625rem;
+    font-size: 17px
+}
+
+button {
+    color: white;
+    background: #13BEFD;
+    height: 42px;
+    border: none;
+    border-radius: 0.75rem;
+    width: 7rem;
+    height: 2.25rem;
+    font-size: 18px;
+}
+
+label {
+    margin-bottom: 10px;
+}
+
+table {
+    display: table;
+    text-align: left;
+    width: 100%;
+    margin: 0 1.5rem;
+}
+
+th {
+    color: #13BEFD;
+    font-weight: bold;
+}
+
+tr {
+    height: 3rem;
+}
+
+tr:nth-child(even) {
+    background: rgba(88, 187, 247, 10%);
+    border-spacing: none;
+    border: #13BEFD;
+}
+
+tr:nth-child(odd) {
+    background: #FFF;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white; */
+  margin: 0 auto;
+  max-width: 350px;
+  /* margin-left: 4rem; */
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.app-content {
+  padding: 30px;
+}
+
+.user-search-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  align-self: center;
+  align-content: center;
+}
+
+.search-button-container {
+    margin-top: 25px;
+}
+
+.label-input {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  margin-right: 3rem;
+}
+
+.user-contribute-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-bottom: 1.5rem;
+}
+
+.map-marker-icon {
+  height: 40px;
+}
+
+.blue-italics {
+    color: #13BEFD;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.modal-container-background {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-container {
+  background: white;
+    z-index: 99;
+    height: 50%;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
