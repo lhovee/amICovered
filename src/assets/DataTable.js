@@ -9,7 +9,7 @@ const careProviders = [
 		state: "Missouri",
 		city: "Kansas City",
 		zip: "64050",
-		careType: "Family Doctor",
+		careTypes: ["Family Doctor"],
 		insuranceProviders: ["BCBS of Kansas City", "Humana", "United Healthcare", "Missouri HealthNet", "CIGNA"],
 
 	},
@@ -20,7 +20,7 @@ const careProviders = [
 		state: "MO",
 		city: "Blue Springs",
 		zip: "64014",
-		careType: "",
+		careTypes: ["Pediatrician"],
 		insuranceProviders: ["BCBSof Kansas City", "Humana", "United Healthcare", "Missouri HealthNet", "CIGNA"],
 	},
 	{
@@ -30,7 +30,7 @@ const careProviders = [
 		state: "MO",
 		city: "Kansas City",
 		zip: "64108",
-		careType: "Dental Clinic",
+		careTypes: ["Dental Clinic"],
 		insuranceProviders: ["Blue Cross Blue Shield", "CIGNA"],
 	},
 	{
@@ -40,7 +40,7 @@ const careProviders = [
 		state: "KS",
 		city: "Overland Park",
 		zip: "66211",
-		careType: "Speech/Language/Hearing",
+		careTypes: ["Speech/Language/Hearing"],
 		insuranceProviders: ["Blue Cross Blue Shield", "CIGNA"],
 	},
 	{
@@ -49,7 +49,7 @@ const careProviders = [
 		state: "MO",
 		city: "Kansas City",
 		zip: "64108",
-		careType: "Pediatric Cardiology",
+		careTypes: ["Pediatric Cardiology"],
 		insuranceProviders: ["Blue Cross Blue Shield", "CIGNA"],
 	},
 	{
@@ -58,7 +58,7 @@ const careProviders = [
 		state: "MO",
 		city: "Kansas City",
 		zip: "64111",
-		careType: "Famly Practice",
+		careTypes: ["Famly Practice"],
 		insuranceProviders: ["AARP", "CIGNA", "Coventry", "Humana", "Medicare"],
 	}
 ];
@@ -73,31 +73,25 @@ return (
 				<th>Providers</th>
 				<th>Address</th>
 				<th>Contact</th>
-			</tr>		
+			</tr>
 		</thead>
 		<tbody>
 			{careProviders.map((careProvider, index) => {
     		return <Fragment key={index}>
-					<tr>
-        		<td>{careProvider.providerName}</td>
-					</tr>
-					<tr>
-        		<td>{careProvider.careType}</td>
-    			</tr>
-    			<tr>
-						<td>
-								{careProvider.insuranceProviders?.map((providerName) => {
-										return providerName;
-								})}
-						</td>
-    			</tr>
-    			<tr>
-		        <td>{`${careProvider.street} + ${careProvider.state} + ${careProvider.city} + ${careProvider.zip}`}</td>
-    			</tr>
-    			<tr>
-        		{/*TODO: not sure if this click will work on an html element? */}
-        		<td>{careProvider.phoneNumber && <span onClick={careProvider.number}><AiFillPhone /></span>}</td>
-    			</tr>
+            <tr>
+                <td>{careProvider.providerName}</td>
+                <td>{careProvider.careTypes.map((careType) => {return careType})}</td>
+                <td>
+                    {careProvider.insuranceProviders.map((providerName) => {
+                            return providerName;
+                    })}
+                </td>
+                <td>
+                    <td>{`${careProvider.street} + ${careProvider.state} + ${careProvider.city} + ${careProvider.zip}`}</td>
+    			</td>
+                {/*TODO: not sure if this click will work on an html element? */}
+                <td>{careProvider.phoneNumber && <span onClick={careProvider.number}><AiFillPhone /></span>}</td>
+            </tr>
 				</Fragment>
 			})}
 		</tbody>
